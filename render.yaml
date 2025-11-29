@@ -20,14 +20,12 @@ services:
         fromService:
           name: taishunhe-redis
           property: connectionString
+  - name: taishunhe-redis
+    type: redis
+    plan: starter
+    maxmemoryPolicy: allkeys-lru
 
 databases:
   - name: taishunhe-db
     plan: starter
     region: singapore
-
-services:
-  - name: taishunhe-redis
-    type: redis
-    plan: starter
-    maxmemoryPolicy: allkeys-lru
