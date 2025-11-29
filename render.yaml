@@ -1,12 +1,16 @@
 services:
+  - name: taishunhe-redis
+    type: redis
+    plan: starter
+    maxmemoryPolicy: allkeys-lru
+    ipAllowList: ["0.0.0.0/0"]
   - type: web
     name: taishunhe-backend
     plan: starter
     env: docker
     region: singapore
-
-    dockerfilePath: ./backend/Dockerfile
-
+    dockerContext: ./backend
+    dockerfilePath: Dockerfile
     envVars:
       - key: DEBUG
         value: "False"
@@ -21,11 +25,6 @@ services:
           name: taishunhe-redis
           type: redis
           property: connectionString
-  - name: taishunhe-redis
-    type: redis
-    plan: starter
-    maxmemoryPolicy: allkeys-lru
-    ipAllowList: ["0.0.0.0/0"]
 
 databases:
   - name: taishunhe-db
