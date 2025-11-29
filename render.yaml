@@ -5,7 +5,7 @@ services:
     env: docker
     region: singapore
 
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./backend/Dockerfile
 
     envVars:
       - key: DEBUG
