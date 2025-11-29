@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ product.name }}</h1>
+<p>{{ product.description }}</p>
+<p class="fw-bold">{{ product.price }} 元</p>
+<form action="/cart/add/{{ product.id }}/" method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-success">加入購物車</button>
+</form>
+{% endblock %}

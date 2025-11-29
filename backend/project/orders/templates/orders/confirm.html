@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>訂單已建立</h1>
+<p>訂單編號：#{{ order.id }}</p>
+<p>總金額：{{ order.total_amount }} 元</p>
+<p>下一步可以串接金流導向付款頁面。</p>
+{% endblock %}

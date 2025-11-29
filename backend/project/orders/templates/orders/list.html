@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>我的訂單</h1>
+<ul>
+{% for o in orders %}
+  <li>#{{ o.id }} - {{ o.created_at }} - {{ o.total_amount }} 元 - {{ o.payment_status }}</li>
+{% empty %}
+  <li>目前沒有訂單。</li>
+{% endfor %}
+</ul>
+{% endblock %}

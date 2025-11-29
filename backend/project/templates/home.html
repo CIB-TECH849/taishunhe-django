@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Taishunhe 茶業{% endblock %}
+{% block content %}
+<h1 class="mb-4">精選商品</h1>
+<div class="row">
+{% for p in products %}
+  <div class="col-md-3 mb-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{ p.name }}</h5>
+        <p class="card-text">{{ p.description|truncatechars:60 }}</p>
+        <p class="fw-bold">{{ p.price }} 元</p>
+        <a href="{% url 'product_detail' p.slug %}" class="btn btn-sm btn-primary">查看</a>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  <p>尚無商品。</p>
+{% endfor %}
+</div>
+{% endblock %}
