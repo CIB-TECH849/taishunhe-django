@@ -1,16 +1,19 @@
 FROM python:3.12-slim
 
-ENV PYTHONUNBUFFERED=1
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    gcc libpq-dev build-essential && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-RUN apt-get update \        && apt-get install -y gcc libpq-dev build-essential \        && apt-get clean
-
-COPY requirements.txt ./
+COPY backend/requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY backend/ .
 
-RUN python manage.py collectstatic --noinput || true
+RUN python manage.py collectstatic --noinput
 
 CMD ["gunicorn", "project.wsgi:application", "--bind", "0.0.0.0:8000"]
