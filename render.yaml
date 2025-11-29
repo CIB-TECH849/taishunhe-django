@@ -19,11 +19,13 @@ services:
       - key: REDIS_URL
         fromService:
           name: taishunhe-redis
+          type: redis
           property: connectionString
   - name: taishunhe-redis
     type: redis
     plan: starter
     maxmemoryPolicy: allkeys-lru
+    ipAllowList: ["0.0.0.0/0"]
 
 databases:
   - name: taishunhe-db
